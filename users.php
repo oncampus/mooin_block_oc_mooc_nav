@@ -13,11 +13,15 @@
 //
 // You should have received a copy of the GNU General Public License
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
+
 /**
- * @package   block_oc_mooc_nav
- * @copyright 2015 oncampus
- * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
- */ 
+ * Lists all the users within a given course.
+ *
+ * @copyright 1999 Martin Dougiamas  http://dougiamas.com
+ * @license http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
+ * @package core_user
+ */
+ 
 
 require_once('../../config.php');
 require_once($CFG->libdir.'/tablelib.php');
@@ -411,10 +415,6 @@ $table->no_sorting('roles');
 $table->no_sorting('groups');
 $table->no_sorting('groupings');
 $table->no_sorting('select');
-if ($USER->username != 'riegerj') {
-$table->no_sorting('badges'); // oncampus
-}
-
 $table->set_attribute('cellspacing', '0');
 $table->set_attribute('id', 'participants');
 $table->set_attribute('class', 'generaltable generalbox');
@@ -511,28 +511,13 @@ if ($table->get_sql_sort()) {
 } else {
     $sort = '';
 }
-if ($USER->username == 'riegerj') {
-	//echo $table->get_sql_sort();
-}
+
 $matchcount = $DB->count_records_sql("SELECT COUNT(u.id) $from $where", $params);
 
 // oncampus $table->initialbars(true);
 $table->pagesize($perpage, $matchcount);
 
 // List of users at the current visible page - paging makes it relatively short.
-
-if ($USER->username == 'riegerj') {
-	if (preg_match('/(badges)/', $sort) == 1) {
-		$select .= ", (SELECT count(*) FROM {badge} ocb, {badge_issued} ocbi 
-						WHERE ocb.courseid = :occourseid 
-						  AND ocb.id = ocbi.badgeid 
-						  AND ocbi.userid = u.id) AS badgecount ";
-		$params['occourseid'] = $course->id;
-		// echo "$select $from $where $sort"; 
-		// print_object($params);
-		// die();
-	}
-}
 
 $userlist = $DB->get_recordset_sql("$select $from $where $sort", $params, $table->get_page_start(), $table->get_page_size());
 
@@ -870,7 +855,20 @@ if ($mode === MODE_USERDETAILS) {    // Print simple listing.
 			// oncampus Badges anzeigen
 			$badges = '';
 			//$badges .= get_badges_list($user->id).get_badges_list($user->id, $course->id);
-			$badges .= get_badges_list($user->id, $course->id);
+			
+			// nur wenn der teilnehmer kein teacher ist werden badges angezeigt
+			$ccontext = context_course::instance($course->id);
+			$roles = get_user_roles($ccontext, $user->id, false);
+			$not_a_teacher = true;
+			foreach ($roles as $role) {
+				if ($role->shortname == 'editingteacher') {
+					$not_a_teacher = false;
+				}
+			}
+			if ($not_a_teacher) {
+				$badges .= get_badges_list($user->id, $course->id);
+			}
+			
 			$data[] = $badges;
 			// oncampus Badges anzeigen ende
 
@@ -921,10 +919,10 @@ if ($perpage == SHOW_ALL_PAGE_SIZE) {
 
 // Link zum Abmelden aus dem Kurs anzeigen,
 // wenn der User über Autoenrol eingeschrieben ist
-if ($enrol = $DB->get_record('enrol', array('courseid' => $course->id, 'enrol' => 'autoenrol'))) {
+if ($enrol = $DB->get_record('enrol', array('courseid' => $course->id, 'enrol' => 'autoenrol', 'status' => 0))) {	
 	if ($user_enrolment = $DB->get_record('user_enrolments', array('enrolid' => $enrol->id, 'userid' => $USER->id))) {
 		$unenrolurl = new moodle_url("$CFG->wwwroot/enrol/autoenrol/unenrolself.php?enrolid=$enrol->id");
-		echo html_writer::tag('div', html_writer::link($unenrolurl, 'Aus diesem Kurs abmelden'), array('class' => 'oc-kurs-abmeldung'));
+		echo html_writer::tag('div', html_writer::link($unenrolurl, get_string('unenrol', 'block_oc_mooc_nav')), array('class' => 'oc-kurs-abmeldung'));
 
 	}
 }

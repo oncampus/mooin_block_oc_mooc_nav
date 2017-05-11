@@ -1,4 +1,4 @@
-<?php
+﻿<?php
 // This file is part of Moodle - http://moodle.org/
 //
 // Moodle is free software: you can redistribute it and/or modify
@@ -34,31 +34,29 @@ $string['imgupload'] = 'Bilder hochladen';
 $string['socialmedia_link'] = 'ID der Textseite mit den SocialMedia-Inhalten';
 $string['my_badges'] = 'Meine Badges';
 $string['available_badges'] = 'Verfügbare Badges';
-$string['awarded_badges'] = 'Kürzlich verliehene Badges';
+$string['awarded_badges'] = 'هويات معارة منذ وقت قريب';
 $string['highscore'] = 'Highscore';
 $string['in_course'] = 'In diesem Kurs';
 $string['in_mooin'] = 'Kursübergreifend auf der Plattform';
 $string['lastday'] = 'In den letzten 24 Stunden';
 $string['lastweek'] = 'In den letzten 7 Tagen';
 $string['discussion_link'] = 'ID für das allgemeine Diskussionsforum';
-$string['my_threads'] = 'Meine Beiträge';
+$string['my_threads'] = 'مشاركاتي';
 $string['chapter_config'] = 'Kapitel';
 $string['name'] = 'Name';
 $string['enabled'] = 'Sichtbar';
 $string['lections'] = 'Anzahl der Lektionen';
 $string['configtext'] = 'Kapiteloptionen';
 $string['directory_link'] = 'ID des Verzeichnisses für die Kapitelbilder';
-$string['course_badges'] = 'Kursbadges';
-$string['overview'] = 'Badgeübersicht';
-$string['profile_badges'] = 'Alle Badges in meinem Profil';
-$string['badge_options'] = 'Badge Einstellungen';
+$string['course_badges'] = 'هويات الدورة (الكورس)';
+$string['overview'] = 'نظرة عامة على الهوية';
+$string['profile_badges'] = 'جميع الهويات في الصفحة (البروفايل) الخاص بك';
+$string['badge_options'] = 'تعديل الهوية';
 $string['owner'] = 'Inhaber';
-$string['no_badges_awarded'] = 'Bisher wurden noch keine Badges in diesem Kurs verliehen';
-$string['no_badges_available'] = 'In diesem Kurs sind noch keine Badges verfügbar';
-$string['badge_overview_description'] = 'Mit diesen Kursbadges bzw. digitalen Lernabzeichen kannst Du den anderen Teilnehmern 
-										hier auf mooin und auch der ganzen Welt im Web zeigen, welche Kursfortschritte Du bereits gemacht hast.
-										<br />Weitere Informationen gibt es in der <a href="https://de.wikipedia.org/wiki/Open_Badges" target="_blank">Wikipedia</a> 
-										und bei <a href="http://openbadges.org"  target="_blank">OpenBadges.org</a>';
+$string['no_badges_awarded'] = 'في هذه الدورة (الكورس) لم تتم أعارة اي هوية حتى الان';
+$string['no_badges_available'] = 'في هذه الدورة (الكورس) لا تتوفر هويات';
+$string['badge_overview_description'] = 'بواسطة هوية الكورس هذه او بالأحرى علامة التعلم الرقمية بأمكانك ان تظهر للأعضاء الاخرين المشتركين في صفحة mooin في كل بقعة في العالم ما هي التطورات التي قمت بها في هذه الدورات ومشاركتهم بها
+										 معلومات اضافية توجد في صفحة الويكيبيدا وايضا على الموقع  <a href="http://openbadges.org"  target="_blank">OpenBadges.org</a>';
 $string['all_forums'] = 'Alle Diskussionsforen';
 $string['course_groups'] = 'Kursgruppen';
 $string['course_groups_descr'] = 'Hier kannst Du sehen, welche Arbeitsgruppen es in diesem Kurs gibt und entscheiden, welcher Du beitreten möchtest:';
@@ -69,11 +67,11 @@ $string['certificate'] = 'Kurszertifikat';
 $string['required_questions'] = 'Benötigte korrekte Antworten in %';
 $string['only_for_trainers'] = 'Nur für Admins und Trainer sichtbar';
 
-$string['course'] = 'Kurs';
-$string['participants'] = 'Kursteilnehmer';
-$string['badges'] = 'Auszeichnungen und Zertifikate';
-$string['news'] = 'News';
-$string['social_media'] = 'Social Media';
-$string['discuss'] = 'Allgemeines Diskussionsforum';
+$string['course'] = 'محتويات الدورة (الكورس)';
+$string['participants'] = 'المشتركين بالدورة (الكورس)';
+$string['badges'] = 'علامات';
+$string['news'] = 'جديد';
+$string['social_media'] = 'شبكات التواصل الاجتماعي';
+$string['discuss'] = 'منتديات للحوار';
 
-$string['unenrol'] = 'Aus diesem Kurs abmelden';
+$string['unenrol'] = 'تسجيل الخروج من الدورة (الكورس)';

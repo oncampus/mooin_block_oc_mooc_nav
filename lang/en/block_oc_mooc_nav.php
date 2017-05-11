@@ -13,10 +13,14 @@
 //
 // You should have received a copy of the GNU General Public License
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
+
 /**
- * @package   block_oc_mooc_nav
- * @copyright 2015 oncampus
- * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
+ * Language file for block "badges"
+ *
+ * @package    block_badges
+ * @copyright  2012 onwards Totara Learning Solutions Ltd {@link http://www.totaralms.com/}
+ * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
+ * @author     Yuliya Bozhko <yuliya.bozhko@totaralms.com>
  */
 
 $string['pluginname'] = 'MOOC navigation';
@@ -63,3 +67,12 @@ $string['cert_descr'] = 'Congratulations! You have answered alt least {$a}% of a
 $string['certificate'] = 'Course certificate';
 $string['required_questions'] = 'Required correct answers (%)';
 $string['only_for_trainers'] = 'Only admins and trainers can see this';
+
+$string['course'] = 'Kurs';
+$string['participants'] = 'Kursteilnehmer';
+$string['badges'] = 'Badges and certificates';
+$string['news'] = 'News';
+$string['social_media'] = 'Social Media';
+$string['discuss'] = 'Allgemeines Diskussionsforum';
+
+$string['unenrol'] = 'Unenrol from this course';

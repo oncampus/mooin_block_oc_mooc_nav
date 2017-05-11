@@ -1,23 +1,4 @@
 <?php
-// This file is part of Moodle - http://moodle.org/
-//
-// Moodle is free software: you can redistribute it and/or modify
-// it under the terms of the GNU General Public License as published by
-// the Free Software Foundation, either version 3 of the License, or
-// (at your option) any later version.
-//
-// Moodle is distributed in the hope that it will be useful,
-// but WITHOUT ANY WARRANTY; without even the implied warranty of
-// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-// GNU General Public License for more details.
-//
-// You should have received a copy of the GNU General Public License
-// along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
-/**
- * @package   block_oc_mooc_nav
- * @copyright 2015 oncampus
- * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
- */
 require_once('../../config.php');
 
 $courseid = optional_param('courseid', 1, PARAM_INT);
@@ -27,6 +8,7 @@ $PAGE->set_url('/blocks/oc_mooc_nav/view_social.php', array('courseid' => $cours
 
 $course = $DB->get_record('course', array('id' => $courseid), '*', MUST_EXIST);
 $context = context_course::instance($course->id, MUST_EXIST);
+$smcontext = context_module::instance($socialmediaid);
 
 // Not needed anymore.
 unset($contextid);
@@ -44,28 +26,29 @@ $PAGE->set_other_editing_capability('moodle/course:manageactivities');
 
 // Ab hier beginnt der code aus mod/page/view.php /////////////////////////////////
 if (!$cm = get_coursemodule_from_id('page', $socialmediaid)) {
-	print_error('invalidcoursemodule');
+    print_error('invalidcoursemodule');
 }
-$page = $DB->get_record('page', array('id'=>$cm->instance), '*', MUST_EXIST);
+$page = $DB->get_record('page', array('id' => $cm->instance), '*', MUST_EXIST);
 
-$PAGE->set_title($course->shortname.': '.$page->name);
+$PAGE->set_title($course->shortname . ': ' . $page->name);
 //$PAGE->set_activity_record($page);
 
 echo $OUTPUT->header();
 
 if ($socialmediaid == 0) {
-	echo $OUTPUT->heading('No social media id!');
-	echo $OUTPUT->footer();
-	exit;
+    echo $OUTPUT->heading('No social media id!');
+    echo $OUTPUT->footer();
+    exit;
 }
 
 //$context = context_module::instance($cm->id);
-$content = file_rewrite_pluginfile_urls($page->content, 'pluginfile.php', $context->id, 'mod_page', 'content', $page->revision);
+$content = file_rewrite_pluginfile_urls($page->content, 'pluginfile.php', $smcontext->id, 'mod_page', 'content', $page->revision);
 $formatoptions = new stdClass;
 $formatoptions->noclean = true;
 $formatoptions->overflowdiv = true;
 $formatoptions->context = $context;
 $content = format_text($content, $page->contentformat, $formatoptions);
+
 echo $OUTPUT->box($content, "generalbox center clearfix");
 // Hier endet der code aus mod/page/view.php /////////////////////////////////
 

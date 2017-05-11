@@ -1,23 +1,5 @@
 <?php
-// This file is part of Moodle - http://moodle.org/
-//
-// Moodle is free software: you can redistribute it and/or modify
-// it under the terms of the GNU General Public License as published by
-// the Free Software Foundation, either version 3 of the License, or
-// (at your option) any later version.
-//
-// Moodle is distributed in the hope that it will be useful,
-// but WITHOUT ANY WARRANTY; without even the implied warranty of
-// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-// GNU General Public License for more details.
-//
-// You should have received a copy of the GNU General Public License
-// along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
-/**
- * @package   block_oc_mooc_nav
- * @copyright 2015 oncampus
- * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
- */
+
 function get_tabs($cid, $socialmediaid, $forumid = 0, $latest_chapter, $latest) {
 	global $DB, $PAGE, $COURSE, $USER;
 	
@@ -29,22 +11,22 @@ function get_tabs($cid, $socialmediaid, $forumid = 0, $latest_chapter, $latest) 
 	
 	// Link zum Kurs
 	$url = new moodle_url('/course/view.php', array('id' => $cid, 'chapter' => $latest_chapter, 'selected_week' => $latest));
-    $course_link = html_writer::link($url, ' ', array('id' => 'oc-coursestart', 'title' => 'Kurs'));
+    $course_link = html_writer::link($url, ' ', array('id' => 'oc-coursestart', 'title' => get_string('course', 'block_oc_mooc_nav')));
 	// Link zur Teilnehmerliste mit GoogleMaps
 	$url = new moodle_url('/blocks/oc_mooc_nav/users.php', array('id' => $cid, 'tab' => 1));
-    $participants_link = html_writer::link($url, ' ', array('id' => 'oc-teilnehmer', 'title' => 'Kursteilnehmer'));
+    $participants_link = html_writer::link($url, ' ', array('id' => 'oc-teilnehmer', 'title' => get_string('participants', 'block_oc_mooc_nav')));
 	// Link zur Badgeübersicht
 	$url = new moodle_url('/blocks/oc_mooc_nav/view_badges.php', array('courseid' => $cid, 'tab' => 1));
-    $badges_link = html_writer::link($url, ' ', array('id' => 'oc-badges', 'title' => 'Auszeichnungen'));
+    $badges_link = html_writer::link($url, ' ', array('id' => 'oc-badges', 'title' => get_string('badges', 'block_oc_mooc_nav')));
 	// Link zum Newsarchiv (Nachrichtenforum)
 	$url = new moodle_url('/mod/forum/view.php', array('f' => $news_forum_id, 'tab' => 1));
-    $forum_link = html_writer::link($url, ' ', array('id' => 'oc-news', 'title' => 'News'));
+    $forum_link = html_writer::link($url, ' ', array('id' => 'oc-news', 'title' => get_string('news', 'block_oc_mooc_nav')));
 	// Link zur SocialMedia-Seite
 	$url = new moodle_url('/blocks/oc_mooc_nav/view_social.php', array('courseid' => $cid, 'socialmediaid' => $socialmediaid, 'tab' => 1));
-    $social_link = html_writer::link($url, ' ', array('id' => 'oc-coursesocial', 'title' => 'Social Media'));
+    $social_link = html_writer::link($url, ' ', array('id' => 'oc-coursesocial', 'title' => get_string('social_media', 'block_oc_mooc_nav')));
 	// Link zum allgemeinen Forum
 	$url = new moodle_url('/blocks/oc_mooc_nav/forum_view.php', array('id' => $forumid, 'tab' => 1));
-    $discussion_forum_link = html_writer::link($url, ' ', array('id' => 'oc-diskussion', 'title' => 'Diskussionsforen'));
+    $discussion_forum_link = html_writer::link($url, ' ', array('id' => 'oc-diskussion', 'title' => get_string('discuss', 'block_oc_mooc_nav')));
 	
 	$links = array( 'course' => $course_link, 
 					'news' => $forum_link, 
@@ -100,7 +82,7 @@ function get_tabs($cid, $socialmediaid, $forumid = 0, $latest_chapter, $latest) 
 	
 	$ul = html_writer::tag('ul', $nav, array('id' => 'oc-coursenavlist'));
 	$section = html_writer::tag('section', $ul, array('id' => 'oc-coursenav'));
-	
+		
 	return $section;
 }
 
@@ -197,8 +179,10 @@ function display_user_and_availbale_badges($userid, $courseid) {
     $userbadges = badges_get_user_badges($userid, $courseid, null, null, null, true);
 	
 	foreach ($userbadges as $ub) {
-		$coursebadges[$ub->id]->highlight = true;
-		$coursebadges[$ub->id]->uniquehash = $ub->uniquehash;
+		if ($ub->status != 4) {
+			$coursebadges[$ub->id]->highlight = true;
+			$coursebadges[$ub->id]->uniquehash = $ub->uniquehash;
+		}
 	}
 	
 	print_badges($coursebadges, false, true, true);
@@ -306,7 +290,8 @@ function get_badges($courseid = 0, $page = 0, $perpage = 0, $search = '') {
                 b.*
             FROM
                 {badge} b
-            WHERE b.type > 0 ';
+            WHERE b.type > 0 
+			  AND b.status != 4 ';
 
 	if ($courseid == 0) {
 		$sql .= ' AND b.type = :type';
@@ -329,7 +314,7 @@ function get_badges($courseid = 0, $page = 0, $perpage = 0, $search = '') {
 }
 
 function get_badges_since($courseid, $since, $global = false) {
-	global $DB;
+	global $DB, $USER;
 	if (!$global) {
 		$params = array();
 		$sql = 'SELECT
@@ -393,7 +378,19 @@ function get_badges_since($courseid, $since, $global = false) {
 	$correct_badges = array();
 	foreach ($badges as $badge) {
 		$badge->id = $badge->badgeid;
-		$correct_badges[] = $badge;
+		
+		// nur wenn der Inhaber kein Teacher ist anzeigen
+		$coursecontext = context_course::instance($courseid);
+		$roles = get_user_roles($coursecontext, $badge->userid, false);
+		$not_a_teacher = true;
+		foreach ($roles as $role) {
+			if ($role->shortname == 'editingteacher') {
+				$not_a_teacher = false;
+			}
+		}
+		if ($not_a_teacher) {
+			$correct_badges[] = $badge;
+		}
 	}
 	return $correct_badges;
 }

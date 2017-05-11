@@ -15,7 +15,8 @@
 // You should have received a copy of the GNU General Public License
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 /**
- * @package   block_oc_mooc_nav
+ * @package   mod_occapira
+ * @category  grade
  * @copyright 2015 oncampus
  * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
@@ -130,8 +131,7 @@
 	
 	global $USER, $DB;
 	
-	//if ($USER->username == 'riegerj' or $USER->username == 'rieger') {
-		//echo '*';
+	
 		$oc_m = $DB->get_record('modules', array('name' => 'forum'));
 		$oc_foren = $DB->get_records('forum', array('course' => $course->id, 'type' => 'general'));
 		$oc_showall = optional_param('showall', '', PARAM_RAW);
@@ -154,7 +154,6 @@
 			}
 		}
 		ob_end_clean();
-	//}
 	
 	///////////////////////////////////////////////////////
 
@@ -165,7 +164,8 @@
 
 	// oncampus Link: Meine Beiträge und Suche//////////////////////////////////////////////////////////////////////////////////////////
 	// https://mooin.oncampus.de/mod/forum/user.php?id=4&course=2
-	//echo forum_get_subscribe_link($forum, $context);
+
+	
 	
 	$mythreads_url = new moodle_url('/mod/forum/user.php', array('id' => $USER->id, 'course' => $course->id));
 	$advancedsearch_url = new moodle_url('/mod/forum/search.php', array('id' => $course->id));
@@ -186,6 +186,26 @@
 	$searchform .= '</div>';
 	echo $searchform;
 	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////	
+	
+	// Forum abonnieren Link
+	//$forum->forcesubscribe
+	// 0 - optional
+	// 1 - verpflichtend
+	// 2 - automatisch
+	// 3 - deaktiviert
+	
+	if ($forum->forcesubscribe == 0 OR $forum->forcesubscribe == 2) {
+		sesskey();
+		$subscription = $DB->get_record('forum_subscriptions', array('userid' => $USER->id, 'forum' => $forum->id));
+		if ($subscription) {
+			echo html_writer::link(new moodle_url('/mod/forum/subscribe.php?id='.$forum->id.'&sesskey='.$USER->sesskey), get_string('unsubscribe','forum'));
+		}
+		else {
+			echo html_writer::link(new moodle_url('/mod/forum/subscribe.php?id='.$forum->id.'&sesskey='.$USER->sesskey), get_string('subscribe','forum'));
+		}
+		echo '<p></p>';
+	}
+	
 	
 /// find out current groups mode
     groups_print_activity_menu($cm, $CFG->wwwroot . '/mod/forum/view.php?id=' . $cm->id);

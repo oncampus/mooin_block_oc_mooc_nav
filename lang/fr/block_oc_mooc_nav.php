@@ -1,4 +1,4 @@
-<?php
+﻿<?php
 // This file is part of Moodle - http://moodle.org/
 //
 // Moodle is free software: you can redistribute it and/or modify
@@ -34,46 +34,44 @@ $string['imgupload'] = 'Bilder hochladen';
 $string['socialmedia_link'] = 'ID der Textseite mit den SocialMedia-Inhalten';
 $string['my_badges'] = 'Meine Badges';
 $string['available_badges'] = 'Verfügbare Badges';
-$string['awarded_badges'] = 'Kürzlich verliehene Badges';
+$string['awarded_badges'] = 'Insignes récemment attribué';
 $string['highscore'] = 'Highscore';
 $string['in_course'] = 'In diesem Kurs';
 $string['in_mooin'] = 'Kursübergreifend auf der Plattform';
 $string['lastday'] = 'In den letzten 24 Stunden';
 $string['lastweek'] = 'In den letzten 7 Tagen';
 $string['discussion_link'] = 'ID für das allgemeine Diskussionsforum';
-$string['my_threads'] = 'Meine Beiträge';
+$string['my_threads'] = 'Mes messages';
 $string['chapter_config'] = 'Kapitel';
 $string['name'] = 'Name';
 $string['enabled'] = 'Sichtbar';
 $string['lections'] = 'Anzahl der Lektionen';
 $string['configtext'] = 'Kapiteloptionen';
 $string['directory_link'] = 'ID des Verzeichnisses für die Kapitelbilder';
-$string['course_badges'] = 'Kursbadges';
-$string['overview'] = 'Badgeübersicht';
-$string['profile_badges'] = 'Alle Badges in meinem Profil';
-$string['badge_options'] = 'Badge Einstellungen';
+$string['course_badges'] = 'Badges de cours';
+$string['overview'] = 'Table des badges';
+$string['profile_badges'] = 'Tous les badges de mon profil';
+$string['badge_options'] = 'Paramètres badge';
 $string['owner'] = 'Inhaber';
-$string['no_badges_awarded'] = 'Bisher wurden noch keine Badges in diesem Kurs verliehen';
-$string['no_badges_available'] = 'In diesem Kurs sind noch keine Badges verfügbar';
-$string['badge_overview_description'] = 'Mit diesen Kursbadges bzw. digitalen Lernabzeichen kannst Du den anderen Teilnehmern 
-										hier auf mooin und auch der ganzen Welt im Web zeigen, welche Kursfortschritte Du bereits gemacht hast.
-										<br />Weitere Informationen gibt es in der <a href="https://de.wikipedia.org/wiki/Open_Badges" target="_blank">Wikipedia</a> 
-										und bei <a href="http://openbadges.org"  target="_blank">OpenBadges.org</a>';
-$string['all_forums'] = 'Alle Diskussionsforen';
-$string['course_groups'] = 'Kursgruppen';
-$string['course_groups_descr'] = 'Hier kannst Du sehen, welche Arbeitsgruppen es in diesem Kurs gibt und entscheiden, welcher Du beitreten möchtest:';
+$string['no_badges_awarded'] = 'Jusqu\'à présent, aucun badges étaient attribués.';
+$string['no_badges_available'] = 'Les badges ne sont pas encore disponibles.';
+$string['badge_overview_description'] = 'Les badges sont des insignes d\'apprentissage numérique. Vous pouvez les montrer des autres participants sur mooin et aussi partout sur le web. Comme ca vous montrez votre situation d\'étude avancé.
+										 Des informations supplémentaires sont disponibles sur <a href="https://de.wikipedia.org/wiki/Open_Badges" target="_blank">Wikipedia</a> et au <a href="http://openbadges.org"  target="_blank">OpenBadges.org</a>.';
+$string['all_forums'] = 'Les forums';
+$string['course_groups'] = 'Les groupes de travail';
+$string['course_groups_descr'] = 'Il y a des groupes de travail dans ce cours. Ici vous les trouvez pour choisir vortre groupe et pour participer:';
 $string['profile_city_descr'] = 'Bitte tragt Euren Wohnort in Euer Profil ein, damit die Teilnehmerkarte möglichst vollständig angezeigt werden kann.';
 $string['number_of_questions'] = 'Anzahl aller Capira-Quizfragen';
-$string['cert_descr'] = 'Herzlichen Glückwunsch! Du hast mindestens {$a}% aller Video-Fragen richtig beantwortet und kannst Dir hier Dein Zertifikat für den erfolgreichen Kursabschluss herunterladen.';
-$string['certificate'] = 'Kurszertifikat';
+$string['cert_descr'] = 'Félicitations! Vous avez répondu correctement au moins de {$a}% de toutes les questions de vidéo et vous pouvez télécharger votre attestation ici:';
+$string['certificate'] = 'Attestation de cours';
 $string['required_questions'] = 'Benötigte korrekte Antworten in %';
 $string['only_for_trainers'] = 'Nur für Admins und Trainer sichtbar';
 
-$string['course'] = 'Kurs';
-$string['participants'] = 'Kursteilnehmer';
-$string['badges'] = 'Auszeichnungen und Zertifikate';
-$string['news'] = 'News';
-$string['social_media'] = 'Social Media';
-$string['discuss'] = 'Allgemeines Diskussionsforum';
+$string['course'] = 'Cours';
+$string['participants'] = 'Etudiants';
+$string['badges'] = 'Récompenses';
+$string['news'] = 'Nouvelles';
+$string['social_media'] = 'Médias sociaux';
+$string['discuss'] = 'Les forums de discussion';
 
-$string['unenrol'] = 'Aus diesem Kurs abmelden';
+$string['unenrol'] = 'Désinscrire de ce cours';

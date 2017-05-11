@@ -13,11 +13,6 @@
 //
 // You should have received a copy of the GNU General Public License
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
-/**
- * @package   block_oc_mooc_nav
- * @copyright 2015 oncampus
- * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
- */
 
 class block_oc_mooc_nav extends block_base {
 
@@ -29,7 +24,7 @@ class block_oc_mooc_nav extends block_base {
     }
 
     public function instance_allow_multiple() {
-        return true;
+        return false;
     }
 
     public function has_config() {
@@ -94,6 +89,15 @@ class block_oc_mooc_nav extends block_base {
 		//print_object($COURSE);die();
 		if ($COURSE) {
 			$content .= get_tabs($COURSE->id, $this->config->socialmedia_link, $this->config->discussion_link, $latest_chapter, $latest).'<br />';
+		}
+		
+		$translate .= '<div style="margin-left:10px;" id="google_translate_element"></div><script type="text/javascript">
+function googleTranslateElementInit() {
+  new google.translate.TranslateElement({pageLanguage: \'de\', layout: google.translate.TranslateElement.InlineLayout.SIMPLE, multilanguagePage: true}, \'google_translate_element\');
+}
+</script><script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>';
+		if ($COURSE->id == 20 || $COURSE->id == 68) {
+			$content .= $translate;
 		}
 		
 		//////////////////////////////////////////////////////////////////////

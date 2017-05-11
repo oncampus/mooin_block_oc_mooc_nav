@@ -34,7 +34,7 @@ $string['imgupload'] = 'Bilder hochladen';
 $string['socialmedia_link'] = 'ID der Textseite mit den SocialMedia-Inhalten';
 $string['my_badges'] = 'Meine Badges';
 $string['available_badges'] = 'Verfügbare Badges';
-$string['awarded_badges'] = 'Kürzlich verliehene Badges';
+$string['awarded_badges'] = 'Senest tildelte badges';
 $string['highscore'] = 'Highscore';
 $string['in_course'] = 'In diesem Kurs';
 $string['in_mooin'] = 'Kursübergreifend auf der Plattform';
@@ -48,17 +48,16 @@ $string['enabled'] = 'Sichtbar';
 $string['lections'] = 'Anzahl der Lektionen';
 $string['configtext'] = 'Kapiteloptionen';
 $string['directory_link'] = 'ID des Verzeichnisses für die Kapitelbilder';
-$string['course_badges'] = 'Kursbadges';
-$string['overview'] = 'Badgeübersicht';
-$string['profile_badges'] = 'Alle Badges in meinem Profil';
-$string['badge_options'] = 'Badge Einstellungen';
-$string['owner'] = 'Inhaber';
+$string['course_badges'] = 'Kursusbadges';
+$string['overview'] = 'Oversigt over badges';
+$string['profile_badges'] = 'Alle badges i min profil';
+$string['badge_options'] = 'Indstillinger for badges';
+$string['owner'] = 'Ejer';
 $string['no_badges_awarded'] = 'Bisher wurden noch keine Badges in diesem Kurs verliehen';
 $string['no_badges_available'] = 'In diesem Kurs sind noch keine Badges verfügbar';
-$string['badge_overview_description'] = 'Mit diesen Kursbadges bzw. digitalen Lernabzeichen kannst Du den anderen Teilnehmern 
-										hier auf mooin und auch der ganzen Welt im Web zeigen, welche Kursfortschritte Du bereits gemacht hast.
-										<br />Weitere Informationen gibt es in der <a href="https://de.wikipedia.org/wiki/Open_Badges" target="_blank">Wikipedia</a> 
-										und bei <a href="http://openbadges.org"  target="_blank">OpenBadges.org</a>';
+$string['badge_overview_description'] = 'Med disse badges kan alle deltagere på mooin og alle andre følge din kursusdeltagelse og dine fremskridt.
+										<br />Mere information om badges finder du på <a href="https://de.wikipedia.org/wiki/Open_Badges" target="_blank">Wikipedia</a> 
+										og <a href="http://openbadges.org"  target="_blank">OpenBadges.org</a>';
 $string['all_forums'] = 'Alle Diskussionsforen';
 $string['course_groups'] = 'Kursgruppen';
 $string['course_groups_descr'] = 'Hier kannst Du sehen, welche Arbeitsgruppen es in diesem Kurs gibt und entscheiden, welcher Du beitreten möchtest:';
@@ -69,11 +68,11 @@ $string['certificate'] = 'Kurszertifikat';
 $string['required_questions'] = 'Benötigte korrekte Antworten in %';
 $string['only_for_trainers'] = 'Nur für Admins und Trainer sichtbar';
 
-$string['course'] = 'Kurs';
-$string['participants'] = 'Kursteilnehmer';
-$string['badges'] = 'Auszeichnungen und Zertifikate';
-$string['news'] = 'News';
-$string['social_media'] = 'Social Media';
-$string['discuss'] = 'Allgemeines Diskussionsforum';
+$string['course'] = 'Kursus';
+$string['participants'] = 'Kursusdeltager';
+$string['badges'] = 'Badges og certifikater';
+$string['news'] = 'Nyheder';
+$string['social_media'] = 'Sociale medier';
+$string['discuss'] = 'Diskussionsforum';
 
-$string['unenrol'] = 'Aus diesem Kurs abmelden';
+$string['unenrol'] = 'Frameld dig dette kursus';
